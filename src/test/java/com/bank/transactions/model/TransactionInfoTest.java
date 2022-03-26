@@ -40,8 +40,8 @@ class TransactionInfoTest {
 	}
 
 	@Test
-	@DisplayName("Testing checkAPIeth.GetBlockNumber (eth_blockNumber) Method ")
-	void checkAPIEthGetBlockNumber() throws IOException {
+	@DisplayName("Testing  convertJavaObjectTOJSON  Method ")
+	void checkConvertJavaObjectTOJSON() throws IOException {
 		Date timeStamp = new Date();
 		TransactionInfo transactionInfo = new TransactionInfo("124578", TransactionType.CREDIT, "123", "INR", "9869",
 				timeStamp);
@@ -53,15 +53,8 @@ class TransactionInfoTest {
 		System.out.println("jsonTransactionInfo : " + jsonTransactionInfo);
 
 
-		/*
-		 * 
-		 * assertNotNull(actual); BigInteger mininmumValue = new BigInteger("0");
-		 * assertTrue(actual.compareTo(mininmumValue) == 1,
-		 * "Error, BlockNumber must be greater or equals to zero");
-		 * System.out.println("eth_blockNumber : " + actual.getClass());
-		 * System.out.println("eth_blockNumber : " + actual);
-		 * 
-		 */
+		
+		assertNotNull(jsonTransactionInfo); 
 	}
 
 }
