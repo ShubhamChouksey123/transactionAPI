@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -14,6 +15,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import com.bank.transactions.model.TransactionType;
 
 @Entity(name = "transaction_info")
 @Table(name = "transaction_info")
@@ -25,9 +27,9 @@ public class TransactionInfo {
 	 */
 
 	@Id
-//	@GeneratedValue(generator = "UUID")
+	@GeneratedValue(generator = "UUID")
 	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-	@Column(name = "contactId", updatable = false, nullable = false, length = 36)
+	@Column(name = "transactionId", updatable = false, nullable = false, length = 36)
 	@Type(type = "org.hibernate.type.UUIDCharType")
 	private UUID transactionId;
 
@@ -36,7 +38,7 @@ public class TransactionInfo {
 
 	@Column(name = "type")
 	@Enumerated(EnumType.STRING)
-	private type type;
+	private TransactionType type;
 
 	@Column
 	private String amount;
@@ -55,8 +57,8 @@ public class TransactionInfo {
 
 	}
 
-	public TransactionInfo(UUID transactionId, String accountNumber, com.bank.transactions.model.type type,
-			String amount, String currency, String accountFrom, Date timeStamp) {
+	public TransactionInfo(UUID transactionId, String accountNumber, TransactionType type, String amount,
+			String currency, String accountFrom, Date timeStamp) {
 		this.transactionId = transactionId;
 		this.accountNumber = accountNumber;
 		this.type = type;
@@ -66,7 +68,7 @@ public class TransactionInfo {
 		this.timeStamp = timeStamp;
 	}
 
-	public TransactionInfo(String accountNumber, com.bank.transactions.model.type type, String amount, String currency,
+	public TransactionInfo(String accountNumber, TransactionType type, String amount, String currency,
 			String accountFrom, Date timeStamp) {
 		this.accountNumber = accountNumber;
 		this.type = type;
@@ -92,11 +94,11 @@ public class TransactionInfo {
 		this.accountNumber = accountNumber;
 	}
 
-	public type getType() {
+	public TransactionType getType() {
 		return type;
 	}
 
-	public void setType(type type) {
+	public void setType(TransactionType type) {
 		this.type = type;
 	}
 

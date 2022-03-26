@@ -3,8 +3,6 @@ package com.bank.transactions.config;
 import java.beans.PropertyVetoException;
 import java.util.Properties;
 import java.util.logging.Logger;
-
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
@@ -12,21 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -73,14 +64,14 @@ public class HibernateConfig {
 
 		return myDataSource;
 	}
-	
+
 	private Properties getHibernateProperties() {
 
 		// set hibernate properties
 		Properties props = new Properties();
 
 		props.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-		props.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));		
+		props.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
 		props.put("hibernate.hbm2ddl.auto", "update");
 
 		return props;
@@ -99,34 +90,30 @@ public class HibernateConfig {
 		return intPropVal;
 	}
 
-
 	@Bean(name = "entityManagerFactory")
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		logger.info("This method is called ! here Session Factory");
-	
+
 		sessionFactory.setDataSource(myDataSource());
 		sessionFactory.setPackagesToScan(env.getProperty("hibernate.packagesToScan"));
 		sessionFactory.setHibernateProperties(getHibernateProperties());
 
 		return sessionFactory;
 	}
-	
-
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-	      LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-	      em.setDataSource(myDataSource());
-	      em.setPackagesToScan(env.getProperty("hibernate.packagesToScan"));
-	
-	      JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-	      em.setJpaVendorAdapter(vendorAdapter);
+		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+		em.setDataSource(myDataSource());
+		em.setPackagesToScan(env.getProperty("hibernate.packagesToScan"));
+
+		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		em.setJpaVendorAdapter(vendorAdapter);
 //	      em.setJpaProperties(additionalProperties());
-	
-	      return em;
+
+		return em;
 	}
-	
+
 	@Bean
 	@Autowired
 	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
@@ -137,6 +124,5 @@ public class HibernateConfig {
 
 		return txManager;
 	}
-
 
 }

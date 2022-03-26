@@ -1,6 +1,6 @@
 package com.bank.transactions.model;
 
-public enum type {
+public enum TransactionType {
 	CREDIT,
 	DEBIT
 }

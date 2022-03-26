@@ -7,5 +7,5 @@ import com.googlecode.jsonrpc4j.JsonRpcService;
 @JsonRpcService(value = "/api")
 public interface TransactionInfoAPI {
 
-	String getTnasctionInfo(@JsonRpcParam(value = "Transaction") TransactionInfo transactionInfo);
+	String setTransactionInfo(@JsonRpcParam(value = "Transaction") TransactionInfo transactionInfo);
 }
