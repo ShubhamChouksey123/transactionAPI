@@ -40,3 +40,46 @@ This is a small Spring Boot Project that has an API endpoint /api which gets the
     ```
 * OR you build and Run using the Eclipse build and And Run button 
 
+
+## Testing API
+* From the Git Bash 
+    ```shell script
+    curl --header 'Content-Type: application/json' --data '
+    {
+    "id":1,
+    "jsonrpc":"2.0",
+    "method":"setTransactionInfo",
+    "params":{
+        "Transaction":{
+            "accountNumber":"98008",
+            "type":"DEBIT",
+            "amount":"10",
+            "currency":"USD",
+            "accountFrom":"101010"
+        }
+    }
+    }' --url http://localhost:8080/api 
+    ```
+* OR you can also test from the Postman 
+    * Method Type - Post
+    * URL - http://localhost:8080/api
+    * Header 
+        * Key - Content-Type
+        * Value - application/json
+    * Body 
+        ```shell script        
+        {
+        "id":1,
+        "jsonrpc":"2.0",
+        "method":"setTransactionInfo",
+        "params":{
+            "Transaction":{
+                "accountNumber":"98008",
+                "type":"DEBIT",
+                "amount":"10",
+                "currency":"USD",
+                "accountFrom":"101010"
+            }
+        }
+        ```
+* ALso you can Verify the TransactionInfo will be saved in DB
