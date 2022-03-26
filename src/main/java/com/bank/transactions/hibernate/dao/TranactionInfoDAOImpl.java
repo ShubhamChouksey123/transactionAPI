@@ -49,9 +49,9 @@ public class TranactionInfoDAOImpl implements TranactionInfoDAO {
 	public UUID saveTransaction(TransactionInfo transactionInfo) {
 		Session session = this.sessionFactory.getCurrentSession();
 
-		session.save(transactionInfo);
+		UUID transactionId = (UUID)session.save(transactionInfo);
 
-		return null;
+		return transactionId;
 	}
 
 	@Override

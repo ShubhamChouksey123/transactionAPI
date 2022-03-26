@@ -126,10 +126,19 @@ public class TransactionInfo {
 		this.accountFrom = accountFrom;
 	}
 
+	public Date getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
 	@Override
 	public String toString() {
 		return "TransactionInfo [transactionId=" + transactionId + ", accountNumber=" + accountNumber + ", type=" + type
-				+ ", amount=" + amount + ", currency=" + currency + ", accountFrom=" + accountFrom + "]";
+				+ ", amount=" + amount + ", currency=" + currency + ", accountFrom=" + accountFrom + ", timeStamp="
+				+ timeStamp + "]";
 	}
 
 }
