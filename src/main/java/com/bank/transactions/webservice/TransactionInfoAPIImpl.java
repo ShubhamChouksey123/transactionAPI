@@ -30,6 +30,8 @@ public class TransactionInfoAPIImpl implements TransactionInfoAPI {
 		transactionInfo.setTimeStamp(timestamp);
 
 		UUID transactionId = tranactionInfoDAO.saveTransaction(transactionInfo);
+		
+		logger.info("Saved Transaction with transactionID : {}",transactionId );
 
 		return "TransactionInfo added successfully with ID : " + transactionId;
 	}
