@@ -82,8 +82,5 @@ This is a small Spring Boot Project that has an API endpoint /api which gets the
             }
         }
         ```
-<<<<<<< HEAD
+
 * ALso you can Verify the TransactionInfo will be saved in DB
-=======
-* ALso you can Verify the TransactionInfo will be saved in DB
->>>>>>> 211a8b2b3c67d1a367512cc7de7bb277e2d773db

@@ -8,4 +8,6 @@ import com.googlecode.jsonrpc4j.JsonRpcService;
 public interface TransactionInfoAPI {
 
 	String setTransactionInfo(@JsonRpcParam(value = "Transaction") TransactionInfo transactionInfo);
+
+    String sayHello();
 }

@@ -1,6 +1,5 @@
 package com.bank.transactions.webservice;
 
-import com.bank.transactions.hibernate.dao.TranactionInfoDAO;
 import com.bank.transactions.hibernate.dao.TranactionInfoDAOImpl;
 import com.bank.transactions.model.TransactionInfo;
 import com.googlecode.jsonrpc4j.spring.AutoJsonRpcServiceImpl;
@@ -34,6 +33,16 @@ public class TransactionInfoAPIImpl implements TransactionInfoAPI {
 		logger.info("Saved Transaction with transactionID : {}",transactionId );
 
 		return "TransactionInfo added successfully with ID : " + transactionId;
+	}
+
+	@Override
+	public String sayHello() {
+		logger.info("sayHello Api Request invoked !");
+
+		Date timestamp = new Date();
+
+
+		return timestamp.toString() + " : TransactionInfo added successfully with ID : " + "some random Data";
 	}
 
 }
